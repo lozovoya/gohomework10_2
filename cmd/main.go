@@ -46,13 +46,13 @@ func main() {
 	)
 	data, err := svc.Encode(line)
 
-	file, err := os.Create("test.png")
+	file, err := os.Create(filename)
 	if err != nil {
 		log.Println(err)
 		os.Exit(1)
 	}
 	defer file.Close()
-	err = ioutil.WriteFile("test.png", data, 0777)
+	err = ioutil.WriteFile(filename, data, 0777)
 	if err != nil {
 		log.Println(err)
 		os.Exit(1)

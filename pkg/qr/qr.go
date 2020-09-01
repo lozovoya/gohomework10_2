@@ -10,9 +10,7 @@ import (
 )
 
 const (
-	apiMethod         = "create-qr-code"
-	headerContentType = "Content-Type"
-	formURLEncoded    = "application/x-www-form-urlencoded"
+	apiMethod = "create-qr-code"
 )
 
 type Service struct {
@@ -50,18 +48,13 @@ func (s *Service) Encode(line string) (data []byte, err error) {
 		return nil, err
 	}
 
-	req.Header.Set(headerContentType, formURLEncoded)
-
 	resp, err := s.client.Do(req)
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
 
-	//resp, err := http.Get(fmt.Sprintf("%s?%s",reqURL, values.Encode()))
-
 	respBody, err := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(respBody))
 	if err != nil {
 		log.Println(err)
 		return nil, err
